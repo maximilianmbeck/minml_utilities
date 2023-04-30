@@ -1,24 +1,25 @@
 import logging
+from dataclasses import asdict
+from typing import Any, Callable, Dict, List, Union
+
 import torch
 import torch.utils.data as data
-from typing import Any, Callable, Dict, List, Union
-from dataclasses import asdict
 from torch import nn
 from torchmetrics import MetricCollection
 
-from ml_utilities.torch_models import create_model
-from ml_utilities.torch_utils.factory import create_optimizer_and_scheduler_from_config
-from ml_utilities.trainer.basetrainer import BaseTrainer
-from ml_utilities.torch_utils import get_loss
-from ml_utilities.torch_utils.metrics import create_metrics
-from ml_utilities.logger import Logger, create_wandb_init_args
+from ml_utilities.config import Config
 from ml_utilities.data import create_datasetgenerator
 from ml_utilities.data.datasetgeneratorinterface import DatasetGeneratorInterface
-
-from ml_utilities.config import Config
+from ml_utilities.logger import Logger, create_wandb_init_args
+from ml_utilities.torch_models import create_model
+from ml_utilities.torch_utils import get_loss
+from ml_utilities.torch_utils.factory import create_optimizer_and_scheduler_from_config
+from ml_utilities.torch_utils.metrics import create_metrics
+from ml_utilities.trainer.basetrainer import BaseTrainer
 
 LOGGER = logging.getLogger(__name__)
 
+# TODO adapt to new basetrainer
 
 class UniversalBaseTrainer(BaseTrainer):
     config_class = Config
